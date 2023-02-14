@@ -85,6 +85,6 @@ public class UpdateUserTest {
 
     @After
     public void cleanUp() {
-        step.deleteUser(updateResponse);
+        step.deleteUser(createResponse);
     }
 }

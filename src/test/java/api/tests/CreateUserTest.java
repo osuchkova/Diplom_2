@@ -21,14 +21,15 @@ public class CreateUserTest {
     private User user;
     private UserClient userClient;
     private CreateSteps step;
-
     private ValidatableResponse response;
+    private ValidatableResponse response2;
 
     @Before
     public void setUp() {
         userClient = new UserClient();
         step = new CreateSteps(userClient);
         response = null;
+        response2 = null;
     }
 
     @Test
@@ -50,7 +51,6 @@ public class CreateUserTest {
         assertEquals(SC_FORBIDDEN, step.getStatusCode(response2));
         assertEquals(false, step.getSuccessStatus(response2));
         assertEquals("User already exists", step.getMessage(response2));
-        step.deleteUser(response2);
     }
 
     @Test
@@ -66,5 +66,6 @@ public class CreateUserTest {
     @After
     public void cleanUp() {
         step.deleteUser(response);
+        step.deleteUser(response2);
     }
 }

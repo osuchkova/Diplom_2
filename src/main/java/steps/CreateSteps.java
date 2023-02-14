@@ -59,7 +59,9 @@ public class CreateSteps {
 
     @Step("Delete created user")
     public void deleteUser(ValidatableResponse responseBody) {
-        if (getAccessToken(responseBody) != null) userClient.delete(getAccessToken(responseBody));
+        if (responseBody != null && getSuccessStatus(responseBody) == true) {
+            userClient.delete(getAccessToken(responseBody));
+        }
     }
 
     @Step("Update password of authorized user")
